@@ -2,29 +2,34 @@ package fr.kata;
 
 import java.text.DecimalFormat;
 
+import fr.kata.coffeMachine.CoffeeMachine;
+
 public class CustomerOrder {
 
 	public enum Drink {
-		COFFE('C', 0.6),
-		CHOCOLATE('H', 0.5),
-		TEA('T', 0.4),
-		ORANGE_JUICE('O', 0.6);
+		COFFE("Coffee", 'C', 0.6),
+		CHOCOLATE("Chocolate", 'H', 0.5),
+		TEA("Tea", 'T', 0.4),
+		ORANGE_JUICE("Orange Juice", 'O', 0.6);
 		
 		private final char code;
 		
 		private final double cost;
 		
-		private Drink(final char code, final double cost) {
+		private final String label;
+		
+		private Drink(final String label, final char code, final double cost) {
+			this.label = label;
 			this.code = code;
 			this.cost = cost;
 		}
 		
-		public char getCode() {
-			return this.code;
-		}
-		
 		public double getCost() {
 			return this.cost;
+		}
+		
+		public String getLabel() {
+			return this.label;
 		}
 	}
 	
@@ -73,6 +78,10 @@ public class CustomerOrder {
 			sb.append("M:Missing money (")
 				.append(new DecimalFormat("0.00").format(drink.cost - this.money))
 				.append(')');
+		} else if (CoffeeMachine.getCoffeeMachine().getChecker().isEmpty(Character.toString(drink.code))) {
+			sb.append("M:No more ")
+				.append(drink.label);
+			CoffeeMachine.getCoffeeMachine().getNotifier().notifyMissingDrink(Character.toString(drink.code));
 		} else {
 			sb.append(drink.code);
 			if (hot) {
