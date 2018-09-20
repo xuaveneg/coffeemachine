@@ -1,12 +1,14 @@
 package fr.kata;
 
+import java.io.IOException;
+
 import fr.kata.CustomerOrder.Drink;
 import fr.kata.coffeMachine.CoffeeMachine;
 import fr.kata.coffeMachine.EmailNotifier;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		{
 			// Iteration 5
 			System.out.println("----- Tests for iteration 5 : ");
@@ -79,7 +81,7 @@ public class Main {
 		}
 	}
 	
-	private static void doTests() {
+	private static void doTests() throws IOException {
 		{
 			// Iteration 1
 			System.out.println("----- Tests for iteration 1 : ");

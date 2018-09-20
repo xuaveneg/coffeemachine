@@ -1,5 +1,9 @@
 package fr.kata;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.Map;
@@ -62,6 +66,18 @@ public class Reporting {
 		return sb;
 	}
 	
+	private static String buildHeaderLine() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append("Drink")
+			.append(';')
+			.append("Nb Served")
+			.append(';')
+			.append("Nb Hot Served")
+			.append(';')
+			.append("Money Earned");
+		return sb.toString();
+	}
+	
 	private static String buildDrinkStat(final Drink drink) {
 		final DrinkStat stat;
 		if (stats.containsKey(drink)) {
@@ -70,7 +86,7 @@ public class Reporting {
 			stat = new DrinkStat();
 		}
 		final StringBuilder sb = new StringBuilder();
-		sb.append(drink.name())
+		sb.append(drink.getLabel())
 			.append(';')
 			.append(statDisplayBuilder(stat));
 		return sb.toString();
@@ -78,6 +94,7 @@ public class Reporting {
 	
 	public static void showConsole() {
 		final DrinkStat total = new DrinkStat();
+		System.out.println(buildHeaderLine());
 		for (final Drink drink : CustomerOrder.Drink.values()) {
 			total.add(stats.get(drink));
 			System.out.println(buildDrinkStat(drink));
@@ -87,7 +104,23 @@ public class Reporting {
 				.toString());
 	}
 	
-	public static void toCsvFile(final String filePath) {
-		
+	public static void toCsvFile(final String filePath) throws IOException {
+		final StringBuilder sb = new StringBuilder();
+		final DrinkStat total = new DrinkStat();
+		sb.append(buildHeaderLine())
+			.append('\n');
+		for (final Drink drink : CustomerOrder.Drink.values()) {
+			total.add(stats.get(drink));
+			sb.append(buildDrinkStat(drink))
+				.append('\n');
+		}
+		sb.append(new StringBuilder("TOTAL;")
+				.append(statDisplayBuilder(total))
+				.append('\n')
+				.toString());
+		final File f = new File(filePath);
+		try (final FileOutputStream fos = new FileOutputStream(f)) {
+			fos.write(sb.toString().getBytes());
+		}
 	}
 }
