@@ -5,7 +5,26 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class CustomerOrder {
 
 	public enum Drink {
-		COFFE, CHOCOLATE, TEA
+		COFFE('C', 0.6),
+		CHOCOLATE('H', 0.5),
+		TEA('T', 0.4);
+		
+		private final char code;
+		
+		private final double cost;
+		
+		private Drink(final char code, final double cost) {
+			this.code = code;
+			this.cost = cost;
+		}
+		
+		public char getCode() {
+			return this.code;
+		}
+		
+		public double getCost() {
+			return this.cost;
+		}
 	}
 	
 	private final Drink drink;
@@ -14,31 +33,22 @@ public class CustomerOrder {
 	
 	private boolean stick;
 	
-	public CustomerOrder(final Drink drink, final int sugar, final boolean stick) {
+	private double money;
+	
+	public CustomerOrder(final Drink drink, final int sugar, final boolean stick, final double money) {
 		this.drink = drink;
 		this.sugar = sugar;
 		this.stick = stick;
 		if (this.sugar > 0) {
 			this.stick = true;
 		}
+		this.money = money;
 	}
 	
-	public CustomerOrder(final Drink drink) {
+	public CustomerOrder(final Drink drink, final double money) {
 		this.drink = drink;
 		this.sugar = 0;
 		this.stick = false;
-	}
-
-	public Drink getDrink() {
-		return drink;
-	}
-
-	public int getSugar() {
-		return sugar;
-	}
-
-	public boolean getStick() {
-		return stick;
 	}
 	
 	public void addSugar(final int sugar) {
@@ -50,26 +60,20 @@ public class CustomerOrder {
 	
 	public String translateToDrinkMaker() {
 		final StringBuilder sb = new StringBuilder();
-		switch (drink) {
-			case CHOCOLATE:
-				sb.append('H');
-				break;
-			case COFFE:
-				sb.append('C');
-				break;
-			case TEA:
-				sb.append('T');
-				break;
-			default:
-				throw new NotImplementedException();
-		}
-		sb.append(':');
-		if (sugar > 0) {
-			sb.append(sugar);
-		}
-		sb.append(':');
-		if (stick) {
-			sb.append(0);
+		if (this.money < drink.cost) {
+			sb.append("M:Missing money (")
+				.append(drink.cost - this.money)
+				.append(')');
+		} else {
+			sb.append(drink.code);
+			sb.append(':');
+			if (sugar > 0) {
+				sb.append(sugar);
+			}
+			sb.append(':');
+			if (stick) {
+				sb.append(0);
+			}
 		}
 		return sb.toString();
 	}
