@@ -7,7 +7,8 @@ public class CustomerOrder {
 	public enum Drink {
 		COFFE('C', 0.6),
 		CHOCOLATE('H', 0.5),
-		TEA('T', 0.4);
+		TEA('T', 0.4),
+		ORANGE_JUICE('O', 0.6);
 		
 		private final char code;
 		

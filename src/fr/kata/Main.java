@@ -58,6 +58,16 @@ public class Main {
 				System.out.println(order3.translateToDrinkMaker());
 			}
 		}
+		{
+			// Iteration 3
+			// The tests in previous iteration must still be working
+			System.out.println("----- Tests for iteration 3 : ");
+			// Orange juice
+			final CustomerOrder order1 = new CustomerOrder(Drink.ORANGE_JUICE, 1);
+			System.out.println(order1.translateToDrinkMaker());
+			final CustomerOrder order2 = new CustomerOrder(Drink.ORANGE_JUICE, 0.5);
+			System.out.println(order2.translateToDrinkMaker());
+		}
 	}
 
 }
