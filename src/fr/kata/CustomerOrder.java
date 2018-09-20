@@ -10,14 +10,20 @@ public class CustomerOrder {
 	
 	private final Drink drink;
 	
-	private final int sugar;
+	private final Integer sugar;
 	
-	private final int stick;
+	private final Integer stick;
 	
 	public CustomerOrder(final Drink drink, final int sugar, final int stick) {
 		this.drink = drink;
 		this.sugar = sugar;
 		this.stick = stick;
+	}
+	
+	public CustomerOrder(final Drink drink) {
+		this.drink = drink;
+		this.sugar = null;
+		this.stick = null;
 	}
 
 	public Drink getDrink() {
