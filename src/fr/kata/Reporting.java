@@ -17,6 +17,7 @@ public class Reporting {
 		private int nbServed;
 		private int nbHotServed;
 		private double moneyEarned;
+		private double moneyHotEarned;
 		
 		public int getNbServed() {
 			return this.nbServed;
@@ -31,6 +32,7 @@ public class Reporting {
 				this.nbServed += stat.nbServed;
 				this.nbHotServed += stat.nbHotServed;
 				this.moneyEarned += stat.moneyEarned;
+				this.moneyHotEarned += stat.moneyHotEarned;
 			}
 		}
 	}
@@ -42,10 +44,11 @@ public class Reporting {
 			stats.put(drink, new DrinkStat());
 		}
 		stats.get(drink).nbServed ++;
+		stats.get(drink).moneyEarned += drink.getCost();
 		if (hot) {
 			stats.get(drink).nbHotServed ++;
+			stats.get(drink).moneyHotEarned += drink.getCost();
 		}
-		stats.get(drink).moneyEarned += drink.getCost();
 	}
 	
 	public static void reset() {
@@ -62,7 +65,10 @@ public class Reporting {
 			.append(';')
 			.append(stat.nbHotServed)
 			.append(';')
-			.append(new DecimalFormat("0.00").format(stat.moneyEarned));
+			.append(new DecimalFormat("0.00").format(stat.moneyEarned))
+			.append(';')
+			.append(new DecimalFormat("0.00").format(stat.moneyHotEarned));
+		
 		return sb;
 	}
 	
@@ -70,11 +76,13 @@ public class Reporting {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Drink")
 			.append(';')
-			.append("Nb Served")
+			.append("Nb of drink served")
 			.append(';')
-			.append("Nb Hot Served")
+			.append("Nb of hot drink served")
 			.append(';')
-			.append("Money Earned");
+			.append("Money earned with drink")
+			.append(';')
+			.append("Money earned with hot drink");
 		return sb.toString();
 	}
 	
