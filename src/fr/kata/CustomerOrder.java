@@ -31,6 +31,15 @@ public class CustomerOrder {
 		public String getLabel() {
 			return this.label;
 		}
+		
+		public static Drink fromCode(final String code) {
+			for (final Drink drink : Drink.values()) {
+				if (Character.toString(drink.code).equals(code)) {
+					return drink;
+				}
+			}
+			return null;
+		}
 	}
 	
 	private final Drink drink;

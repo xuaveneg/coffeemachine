@@ -2,6 +2,7 @@ package fr.kata;
 
 import fr.kata.CustomerOrder.Drink;
 import fr.kata.coffeMachine.CoffeeMachine;
+import fr.kata.coffeMachine.EmailNotifier;
 
 public class Main {
 
@@ -9,16 +10,71 @@ public class Main {
 		{
 			// Iteration 5
 			System.out.println("----- Tests for iteration 5 : ");
+			final EmailNotifier notifier = (s) -> {System.out.println("> Sending mail : " + s + " is empty.");};
 			// Machine always empty
 			CoffeeMachine.initCoffeeMachine(
 					(s) -> {return true;},
-					(s) -> {System.out.println(s + " is empty.");});
+					notifier);
 			doTests();
 			// Machine always full (tests like before)
 			Reporting.reset();
 			CoffeeMachine.initCoffeeMachine(
 					(s) -> {return false;},
-					(s) -> {System.out.println(s + " is empty.");});
+					notifier);
+			doTests();
+			// Only 1 of each drink (orange juice won't get empty)
+			Reporting.reset();
+			CoffeeMachine.initCoffeeMachine(
+					(s) -> {
+						if (Reporting.getStat(Drink.fromCode(s)).getNbServed() >= 1) {
+							return true;
+						} else {
+							return false;
+						}
+					},
+					notifier);
+			doTests();
+			// Only 4 of each drink (only coffee will run empty)
+			Reporting.reset();
+			CoffeeMachine.initCoffeeMachine(
+					(s) -> {
+						if (Reporting.getStat(Drink.fromCode(s)).getNbServed() >= 4) {
+							return true;
+						} else {
+							return false;
+						}
+					},
+					notifier);
+			doTests();
+			// 0 Orange juice, 3 Tea, 2 Chocolate, 4 Coffee
+			Reporting.reset();
+			CoffeeMachine.initCoffeeMachine(
+					(s) -> {
+						final int limit;
+						switch (Drink.fromCode(s)) {
+						case ORANGE_JUICE:
+							limit = 0;
+							break;
+						case TEA:
+							limit = 3;
+							break;
+						case CHOCOLATE:
+							limit = 2;
+							break;
+						case COFFE:
+							limit = 4;
+							break;
+						default:
+							return true;
+						}
+						if (Reporting.getStat(Drink.fromCode(s)).getNbServed() >= limit) {
+							return true;
+						} else {
+							return false;
+						}
+						
+					},
+					notifier);
 			doTests();
 		}
 	}

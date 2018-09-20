@@ -3,6 +3,7 @@ package fr.kata;
 import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Optional;
 
 import fr.kata.CustomerOrder.Drink;
 
@@ -12,6 +13,14 @@ public class Reporting {
 		private int nbServed;
 		private int nbHotServed;
 		private double moneyEarned;
+		
+		public int getNbServed() {
+			return this.nbServed;
+		}
+		
+		public int getNbHotServed() {
+			return this.nbHotServed;
+		}
 		
 		public void add(final DrinkStat stat) {
 			if (stat != null) {				
@@ -37,6 +46,10 @@ public class Reporting {
 	
 	public static void reset() {
 		stats.clear();
+	}
+	
+	public static DrinkStat getStat(final Drink drink) {
+		return Optional.ofNullable(stats.get(drink)).orElse(new DrinkStat());
 	}
 	
 	private static StringBuilder statDisplayBuilder(final DrinkStat stat) {
