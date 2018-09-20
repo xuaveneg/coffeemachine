@@ -7,7 +7,7 @@ import fr.kata.coffeMachine.CoffeeMachine;
 public class CustomerOrder {
 
 	public enum Drink {
-		COFFE("Coffee", 'C', 0.6),
+		COFFEE("Coffee", 'C', 0.6),
 		CHOCOLATE("Chocolate", 'H', 0.5),
 		TEA("Tea", 'T', 0.4),
 		ORANGE_JUICE("Orange Juice", 'O', 0.6);

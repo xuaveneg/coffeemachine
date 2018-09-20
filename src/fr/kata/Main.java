@@ -63,7 +63,7 @@ public class Main {
 						case CHOCOLATE:
 							limit = 2;
 							break;
-						case COFFE:
+						case COFFEE:
 							limit = 4;
 							break;
 						default:
@@ -90,7 +90,7 @@ public class Main {
 			System.out.println("Tea with 1 sugar and stick : " + order1.translateToDrinkMaker());
 			final CustomerOrder order2 = new CustomerOrder(Drink.CHOCOLATE, false, 1);
 			System.out.println("Chocolate with no sugar and no stick : " + order2.translateToDrinkMaker());
-			final CustomerOrder order3 = new CustomerOrder(Drink.COFFE, false, 2, true, 1);
+			final CustomerOrder order3 = new CustomerOrder(Drink.COFFEE, false, 2, true, 1);
 			System.out.println("Coffee with 2 sugars and a stick : "+ order3.translateToDrinkMaker());
 			// Adding one or two sugars
 			order1.addSugar(1);
@@ -100,7 +100,7 @@ public class Main {
 			// Putting stick if the order contains sugar
 			order2.addSugar(1);
 			System.out.println("Adding a sugar to chocolate with no sugar and no stick : " + order2.translateToDrinkMaker());
-			final CustomerOrder order4 = new CustomerOrder(Drink.COFFE, false, 1, false, 1);
+			final CustomerOrder order4 = new CustomerOrder(Drink.COFFEE, false, 1, false, 1);
 			System.out.println("Creating an order for Coffee with a sugar and no stick : " + order4.translateToDrinkMaker());
 		}
 		{
@@ -113,7 +113,7 @@ public class Main {
 				System.out.println(order1.translateToDrinkMaker());
 				final CustomerOrder order2 = new CustomerOrder(Drink.CHOCOLATE, false, 0.5);
 				System.out.println(order2.translateToDrinkMaker());
-				final CustomerOrder order3 = new CustomerOrder(Drink.COFFE, false, 2, true, 0.6);
+				final CustomerOrder order3 = new CustomerOrder(Drink.COFFEE, false, 2, true, 0.6);
 				System.out.println(order3.translateToDrinkMaker());
 			}
 			{
@@ -122,7 +122,7 @@ public class Main {
 				System.out.println(order1.translateToDrinkMaker());
 				final CustomerOrder order2 = new CustomerOrder(Drink.CHOCOLATE, false, 0);
 				System.out.println(order2.translateToDrinkMaker());
-				final CustomerOrder order3 = new CustomerOrder(Drink.COFFE, false, 2, true, 0);
+				final CustomerOrder order3 = new CustomerOrder(Drink.COFFEE, false, 2, true, 0);
 				System.out.println(order3.translateToDrinkMaker());
 			}
 			{
@@ -131,7 +131,7 @@ public class Main {
 				System.out.println(order1.translateToDrinkMaker());
 				final CustomerOrder order2 = new CustomerOrder(Drink.CHOCOLATE, false, 0.49);
 				System.out.println(order2.translateToDrinkMaker());
-				final CustomerOrder order3 = new CustomerOrder(Drink.COFFE, false, 2, true, 0.59);
+				final CustomerOrder order3 = new CustomerOrder(Drink.COFFEE, false, 2, true, 0.59);
 				System.out.println(order3.translateToDrinkMaker());
 			}
 		}
@@ -145,7 +145,7 @@ public class Main {
 			final CustomerOrder order2 = new CustomerOrder(Drink.ORANGE_JUICE, false, 0.5);
 			System.out.println(order2.translateToDrinkMaker());
 			// Hot drink
-			final CustomerOrder order3 = new CustomerOrder(Drink.COFFE, true, 1);
+			final CustomerOrder order3 = new CustomerOrder(Drink.COFFEE, true, 1);
 			System.out.println(order3.translateToDrinkMaker());
 			final CustomerOrder order4 = new CustomerOrder(Drink.CHOCOLATE, true, 1, true, 1);
 			System.out.println(order4.translateToDrinkMaker());
