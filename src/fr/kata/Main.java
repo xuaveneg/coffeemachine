@@ -17,13 +17,13 @@ public class Main {
 			CoffeeMachine.initCoffeeMachine(
 					(s) -> {return true;},
 					notifier);
-			doTests();
+			doTests("empty.csv");
 			// Machine always full (tests like before)
 			Reporting.reset();
 			CoffeeMachine.initCoffeeMachine(
 					(s) -> {return false;},
 					notifier);
-			doTests();
+			doTests("full.csv");
 			// Only 1 of each drink (orange juice won't get empty)
 			Reporting.reset();
 			CoffeeMachine.initCoffeeMachine(
@@ -35,7 +35,7 @@ public class Main {
 						}
 					},
 					notifier);
-			doTests();
+			doTests("oneOfEach.csv");
 			// Only 4 of each drink (only coffee will run empty)
 			Reporting.reset();
 			CoffeeMachine.initCoffeeMachine(
@@ -47,7 +47,7 @@ public class Main {
 						}
 					},
 					notifier);
-			doTests();
+			doTests("fourOfEach.csv");
 			// 0 Orange juice, 3 Tea, 2 Chocolate, 4 Coffee
 			Reporting.reset();
 			CoffeeMachine.initCoffeeMachine(
@@ -77,11 +77,11 @@ public class Main {
 						
 					},
 					notifier);
-			doTests();
+			doTests("customLimits.csv");
 		}
 	}
 	
-	private static void doTests() throws IOException {
+	private static void doTests(final String csvFilePath) throws IOException {
 		{
 			// Iteration 1
 			System.out.println("----- Tests for iteration 1 : ");
@@ -156,7 +156,7 @@ public class Main {
 			// Iteration 4
 			System.out.println("----- Tests for iteration 4 : ");
 			Reporting.showConsole();
-			Reporting.toCsvFile("report.csv");
+			Reporting.toCsvFile(csvFilePath);
 		}
 	}
 
