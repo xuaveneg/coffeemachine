@@ -47,6 +47,7 @@ public class CustomerOrder {
 		this.drink = drink;
 		this.sugar = 0;
 		this.stick = false;
+		this.money = money;
 	}
 	
 	public void addSugar(final int sugar) {
