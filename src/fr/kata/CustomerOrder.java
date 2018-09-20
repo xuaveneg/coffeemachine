@@ -1,7 +1,5 @@
 package fr.kata;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class CustomerOrder {
 
 	public enum Drink {
