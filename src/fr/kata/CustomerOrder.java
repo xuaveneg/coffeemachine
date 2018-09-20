@@ -1,5 +1,7 @@
 package fr.kata;
 
+import java.text.DecimalFormat;
+
 public class CustomerOrder {
 
 	public enum Drink {
@@ -61,7 +63,7 @@ public class CustomerOrder {
 		final StringBuilder sb = new StringBuilder();
 		if (this.money < drink.cost) {
 			sb.append("M:Missing money (")
-				.append(drink.cost - this.money)
+				.append(new DecimalFormat("0.00").format(drink.cost - this.money))
 				.append(')');
 		} else {
 			sb.append(drink.code);
