@@ -1,10 +1,23 @@
 package fr.kata;
 
 import fr.kata.CustomerOrder.Drink;
+import fr.kata.coffeMachine.CoffeeMachine;
 
 public class Main {
 
 	public static void main(String[] args) {
+		{
+			// Iteration 5
+			System.out.println("----- Tests for iteration 5 : ");
+			// Machine always empty
+			CoffeeMachine.initCoffeeMachine(
+				(s) -> {return true;},
+				(s) -> {System.out.println(s + " is empty.");});
+			doTests();
+		}
+	}
+	
+	private static void doTests() {
 		{
 			// Iteration 1
 			System.out.println("----- Tests for iteration 1 : ");
