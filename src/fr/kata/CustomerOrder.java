@@ -36,8 +36,13 @@ public class CustomerOrder {
 	
 	private double money;
 	
-	public CustomerOrder(final Drink drink, final int sugar, final boolean stick, final double money) {
+	private boolean hot;
+	
+	public CustomerOrder(final Drink drink, final boolean hot,
+			final int sugar, final boolean stick,
+			final double money) {
 		this.drink = drink;
+		this.hot = hot;
 		this.sugar = sugar;
 		this.stick = stick;
 		if (this.sugar > 0) {
@@ -46,8 +51,10 @@ public class CustomerOrder {
 		this.money = money;
 	}
 	
-	public CustomerOrder(final Drink drink, final double money) {
+	public CustomerOrder(final Drink drink, final boolean hot,
+			final double money) {
 		this.drink = drink;
+		this.hot = hot;
 		this.sugar = 0;
 		this.stick = false;
 		this.money = money;
@@ -68,6 +75,9 @@ public class CustomerOrder {
 				.append(')');
 		} else {
 			sb.append(drink.code);
+			if (hot) {
+				sb.append('h');
+			}
 			sb.append(':');
 			if (sugar > 0) {
 				sb.append(sugar);
