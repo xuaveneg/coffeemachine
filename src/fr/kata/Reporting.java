@@ -35,6 +35,10 @@ public class Reporting {
 		stats.get(drink).moneyEarned += drink.getCost();
 	}
 	
+	public static void reset() {
+		stats.clear();
+	}
+	
 	private static StringBuilder statDisplayBuilder(final DrinkStat stat) {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(stat.nbServed)

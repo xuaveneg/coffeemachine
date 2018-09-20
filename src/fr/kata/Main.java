@@ -11,8 +11,14 @@ public class Main {
 			System.out.println("----- Tests for iteration 5 : ");
 			// Machine always empty
 			CoffeeMachine.initCoffeeMachine(
-				(s) -> {return true;},
-				(s) -> {System.out.println(s + " is empty.");});
+					(s) -> {return true;},
+					(s) -> {System.out.println(s + " is empty.");});
+			doTests();
+			// Machine always full (tests like before)
+			Reporting.reset();
+			CoffeeMachine.initCoffeeMachine(
+					(s) -> {return false;},
+					(s) -> {System.out.println(s + " is empty.");});
 			doTests();
 		}
 	}
