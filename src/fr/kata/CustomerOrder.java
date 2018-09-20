@@ -10,7 +10,7 @@ public class CustomerOrder {
 	
 	private final Drink drink;
 	
-	private Integer sugar;
+	private int sugar;
 	
 	private boolean stick;
 	
@@ -25,7 +25,7 @@ public class CustomerOrder {
 	
 	public CustomerOrder(final Drink drink) {
 		this.drink = drink;
-		this.sugar = null;
+		this.sugar = 0;
 		this.stick = false;
 	}
 
@@ -42,11 +42,7 @@ public class CustomerOrder {
 	}
 	
 	public void addSugar(final int sugar) {
-		if (this.sugar != null) {
-			this.sugar += sugar;
-		} else {
-			this.sugar = sugar;
-		}
+		this.sugar += sugar;
 		if (this.sugar > 0) {
 			this.stick = true;
 		}
@@ -68,7 +64,7 @@ public class CustomerOrder {
 				throw new NotImplementedException();
 		}
 		sb.append(':');
-		if (sugar != null) {
+		if (sugar > 0) {
 			sb.append(sugar);
 		}
 		sb.append(':');
