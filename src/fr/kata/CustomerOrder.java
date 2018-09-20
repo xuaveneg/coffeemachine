@@ -86,6 +86,7 @@ public class CustomerOrder {
 			if (stick) {
 				sb.append(0);
 			}
+			Reporting.serve(drink);
 		}
 		return sb.toString();
 	}

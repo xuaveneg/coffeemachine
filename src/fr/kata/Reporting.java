@@ -13,6 +13,13 @@ public class Reporting {
 	
 	private static final Map<Drink, DrinkStat> stats = new EnumMap<>(Drink.class);
 	
+	public static void serve(final Drink drink) {
+		if (!stats.containsKey(drink)) {
+			stats.put(drink, new DrinkStat());
+		}
+		stats.get(drink).nbServed ++;
+	}
+	
 	private static String buildDrinkStat(final Drink drink) {
 		final DrinkStat stat;
 		if (stats.containsKey(drink)) {
