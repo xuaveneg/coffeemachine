@@ -75,6 +75,12 @@ public class Main {
 			final CustomerOrder order5 = new CustomerOrder(Drink.TEA, true, 2, true, 1);
 			System.out.println(order5.translateToDrinkMaker());
 		}
+		{
+			// Iteration 4
+			System.out.println("----- Tests for iteration 4 : ");
+			Reporting.showConsole();
+			Reporting.toCsvFile("report.csv");
+		}
 	}
 
 }
