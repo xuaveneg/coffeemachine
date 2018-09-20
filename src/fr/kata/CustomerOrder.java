@@ -12,9 +12,9 @@ public class CustomerOrder {
 	
 	private final Integer sugar;
 	
-	private final Integer stick;
+	private final boolean stick;
 	
-	public CustomerOrder(final Drink drink, final int sugar, final int stick) {
+	public CustomerOrder(final Drink drink, final int sugar, final boolean stick) {
 		this.drink = drink;
 		this.sugar = sugar;
 		this.stick = stick;
@@ -23,7 +23,7 @@ public class CustomerOrder {
 	public CustomerOrder(final Drink drink) {
 		this.drink = drink;
 		this.sugar = null;
-		this.stick = null;
+		this.stick = false;
 	}
 
 	public Drink getDrink() {
@@ -34,7 +34,7 @@ public class CustomerOrder {
 		return sugar;
 	}
 
-	public int getStick() {
+	public boolean getStick() {
 		return stick;
 	}
 	
@@ -53,11 +53,14 @@ public class CustomerOrder {
 			default:
 				throw new NotImplementedException();
 		}
-		sb
-			.append(':')
-			.append(sugar)
-			.append(':')
-			.append(stick);
+		sb.append(':');
+		if (sugar != null) {
+			sb.append(sugar);
+		}
+		sb.append(':');
+		if (stick) {
+			sb.append(0);
+		}
 		return sb.toString();
 	}
 }
