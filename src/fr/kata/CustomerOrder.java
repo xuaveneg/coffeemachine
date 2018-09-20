@@ -1,5 +1,7 @@
 package fr.kata;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class CustomerOrder {
 
 	public enum Drink {
@@ -28,5 +30,27 @@ public class CustomerOrder {
 
 	public int getStick() {
 		return stick;
+	}
+	
+	public String translateToDrinkMaker() {
+		final StringBuilder sb = new StringBuilder();
+		switch (drink) {
+			case CHOCOLATE:
+				sb.append('H');
+				break;
+			case COFFE:
+				sb.append('C');
+				break;
+			case TEA:
+				sb.append('T');
+				break;
+			default:
+				throw new NotImplementedException();
+		}
+		sb
+			.append(':')
+			.append(sugar)
+			.append(':')
+			.append(stick);
 	}
 }
