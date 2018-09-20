@@ -52,5 +52,6 @@ public class CustomerOrder {
 			.append(sugar)
 			.append(':')
 			.append(stick);
+		return sb.toString();
 	}
 }
