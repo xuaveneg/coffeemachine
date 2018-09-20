@@ -42,7 +42,11 @@ public class CustomerOrder {
 	}
 	
 	public void addSugar(final int sugar) {
-		this.sugar += sugar;
+		if (this.sugar != null) {
+			this.sugar += sugar;
+		} else {
+			this.sugar = sugar;
+		}
 		if (this.sugar > 0) {
 			this.stick = true;
 		}
