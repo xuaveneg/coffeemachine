@@ -10,14 +10,17 @@ public class CustomerOrder {
 	
 	private final Drink drink;
 	
-	private final Integer sugar;
+	private Integer sugar;
 	
-	private final boolean stick;
+	private boolean stick;
 	
 	public CustomerOrder(final Drink drink, final int sugar, final boolean stick) {
 		this.drink = drink;
 		this.sugar = sugar;
 		this.stick = stick;
+		if (this.sugar > 0) {
+			this.stick = true;
+		}
 	}
 	
 	public CustomerOrder(final Drink drink) {
@@ -36,6 +39,13 @@ public class CustomerOrder {
 
 	public boolean getStick() {
 		return stick;
+	}
+	
+	public void addSugar(final int sugar) {
+		this.sugar += sugar;
+		if (this.sugar > 0) {
+			this.stick = true;
+		}
 	}
 	
 	public String translateToDrinkMaker() {
